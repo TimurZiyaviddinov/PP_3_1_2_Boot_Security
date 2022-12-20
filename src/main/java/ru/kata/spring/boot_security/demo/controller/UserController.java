@@ -82,7 +82,6 @@ public class UserController {
 
     @PatchMapping(value = "/admin/{id}")
     public String updateUser(@ModelAttribute("user") User user, @RequestParam(required = false, value = "checkBoxRoles") String[] checkBoxRoles) {
-        userService.updateUser(user);
         Set<Role> roleSet = new HashSet<>();
         for (String roles : checkBoxRoles) {
             roleSet.add(roleService.getRoleByUsername(roles));
