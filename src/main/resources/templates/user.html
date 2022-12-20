@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users list</title>
+</head>
+<body>
+<h3> Users Directory</h3>
+<hr>
+<table border="1">
+    <thead>
+    <tr>
+        <th><h2> id </h2></th>
+        <th><h2> Name </h2></th>
+        <th><h2> Age </h2></th>
+        <th><h2> City </h2></th>
+        <th><h2> Role </h2></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${user.id}"/>
+        <td th:text="${user.name}"/>
+        <td th:text="${user.age}"/>
+        <td th:text="${user.city}"/>
+        <td th:each="role: ${roles}"><p th:text="${role.role}"></p></td>
+
+    </tr>
+    </tbody>
+</table>
+<br>
+<a th:href="@{/logout}">LOGOUT</a>
+</body>
+</html>
