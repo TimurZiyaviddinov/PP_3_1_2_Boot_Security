@@ -6,22 +6,21 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.kata.spring.boot_security.demo.dao.UserDao;
-import ru.kata.spring.boot_security.demo.model.User;
 
 @Service
-@Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
-    public void setUserService(UserService userService) {
+    public UserDetailsServiceImpl(UserService userService) {
         this.userService = userService;
     }
 
-//Лезем в БД и смотрим пользователя с таким именем, если совпадет пароль то возвращаем в провайдер юзердитэилс
+
+    //Лезем в БД и смотрим пользователя с таким именем, если совпадет пароль то возвращаем в провайдер юзердитэилс
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userService.getUserByName(username);
     }
