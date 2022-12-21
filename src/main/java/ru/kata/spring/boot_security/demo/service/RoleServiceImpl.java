@@ -47,7 +47,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Set<Role> checkRoles(String[] checkBoxRoles) {
         if (checkBoxRoles == null) {
-
+            checkBoxRoles = new String[]{"ROLE_USER"};
         }
 
         Set<Role> rolesSet = new HashSet<>();
