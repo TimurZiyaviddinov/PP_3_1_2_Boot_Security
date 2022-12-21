@@ -43,13 +43,9 @@ public class AdminController {
 
     @PostMapping("/add")
     public String create(@ModelAttribute("user") User user, @RequestParam(required = false, value = "checkBoxRoles") String[] checkBoxRoles) {
-        Set<Role> rolesSet = new HashSet<>();
-        for (String roles : checkBoxRoles) {
-            rolesSet.add(roleService.getRoleByName(roles));
-        }
-        user.setRoles(rolesSet);
+        user.setRoles(roleService.checkRoles(checkBoxRoles));
         userService.addUser(user);
-        return "redirect:/admin";
+        return "redirect:/admin/";
     }
 
     @GetMapping(value = "/{id}/delete-user")
@@ -61,7 +57,7 @@ public class AdminController {
     @DeleteMapping(value = "/{id}")
     public String deleteUser(@ModelAttribute("user") User user) {
         userService.deleteUser(user);
-        return "redirect:/admin";
+        return "redirect:/admin/";
     }
 
     @GetMapping(value = "/{id}/edit")
@@ -73,13 +69,9 @@ public class AdminController {
 
     @PatchMapping(value = "/{id}")
     public String updateUser(@ModelAttribute("user") User user, @RequestParam(required = false, value = "checkBoxRoles") String[] checkBoxRoles) {
-        Set<Role> roleSet = new HashSet<>();
-        for (String roles : checkBoxRoles) {
-            roleSet.add(roleService.getRoleByName(roles));
-        }
-        user.setRoles(roleSet);
+        user.setRoles(roleService.checkRoles(checkBoxRoles));
         userService.updateUser(user);
-        return "redirect:/admin";
+        return "redirect:/admin/";
     }
 
 }

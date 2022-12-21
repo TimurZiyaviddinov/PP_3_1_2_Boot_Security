@@ -13,7 +13,7 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-    @GetMapping(value = "/user")
+    @GetMapping(value = "/")
     public String userPage(@AuthenticationPrincipal User user, ModelMap modelMap) {
         modelMap.addAttribute("user", user);
         modelMap.addAttribute("roles", user.getRoles());
