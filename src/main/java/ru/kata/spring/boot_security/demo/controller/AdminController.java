@@ -42,7 +42,8 @@ public class AdminController {
     }
 
     @PostMapping("/add")
-    public String create(@ModelAttribute("user") User user, @RequestParam(required = false, value = "checkBoxRoles") String[] checkBoxRoles) {
+    public String create(@ModelAttribute("user") User user, @RequestParam(required = false, value = "checkBoxRoles")
+    String[] checkBoxRoles) {
         user.setRoles(roleService.checkRoles(checkBoxRoles));
         userService.addUser(user);
         return "redirect:/admin/";
